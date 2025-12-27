@@ -1,0 +1,20 @@
+{
+  "name": "huddai-alap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anayethasan/huddai-alap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anayethasan/huddai-alap/issues"
+  },
+  "homepage": "https://github.com/anayethasan/huddai-alap#readme",
+  "description": ""
+}
