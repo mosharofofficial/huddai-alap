@@ -1,5 +1,6 @@
 import express from 'express'
-import { signUp, login, logout } from '../controllers/auth.controllers.js';
+import { signUp, login, logout, updateProfile } from '../controllers/auth.controllers.js';
+import { protectRoute } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -9,8 +10,10 @@ router.post("/login", login);
 
 router.post("/logout", logout);
 
-router.get("/update", (req, res) => {
-    res.send('logout route here');
+router.put("/update-profile", protectRoute, updateProfile );
+
+router.get("/check", protectRoute, (req, res) => {
+    res.status(200).json(req.user);
 });
 
 export default router;

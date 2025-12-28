@@ -1,5 +1,7 @@
 import express from "express";
 import path from "path";
+import cookieParser from "cookie-parser";
+
 import Route from "./routes/auth.route.js";
 import messageRoute from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
@@ -13,6 +15,8 @@ const port = ENV.PORT || 3215;
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+app.use(cookieParser());
 
 app.use("/api/auth", Route);
 app.use("/api/message", messageRoute);
