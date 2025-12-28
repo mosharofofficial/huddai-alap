@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 
 app.use("/api/auth", Route);
-app.use("/api/message", messageRoute);
+app.use("/api/messages", messageRoute);
 
 // jokhon amar app ready hobe deployment er jonno
 if(ENV.NODE_ENV === "production")
