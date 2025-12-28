@@ -1,5 +1,6 @@
+import { generateToken } from "../lib/utils.js";
 import User from "../models/User.js";
-
+import bcrypt from "bcryptjs";
 export const signUp = async (req, res) => {
     const {fullName, email, password} = req.body;
     try {
@@ -19,10 +20,39 @@ export const signUp = async (req, res) => {
         {
             return res.status(400).json({message:"Please enter a valid email address"});
         }
-        const user = await User.findOne(email);
+        const user = await User.findOne({ email }); 
         if(user)
             return res.status(400).json({message:"you are already created account now you can login"});
+        // amra password hasing er jonno bcrypt.js use korbo
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(password, salt);
+
+        const newUser = new User({
+            fullName,
+            email,
+            password: hashPassword
+        });
+
+        if(newUser)
+        {
+            // generateToken(newUser._id, res)
+            // await newUser.save();
+            const saveUser = await newUser.save();
+            generateToken(saveUser._id, res)
+
+            res.status(201).json({
+                _id:newUser._id,
+                fullName:newUser.fullName,
+                email:newUser.email,
+                profilePic:newUser.profilePic,
+            });
+        }
+        else
+        {
+            res.status(400).json({message: "invalid User information"})
+        }
     } catch (error) {
-        res.status(500).json({message: error.message});
+        console.log("Error in signup controller", error);
+        res.status(500).json({message: "internal serval error"});
     }
 }
