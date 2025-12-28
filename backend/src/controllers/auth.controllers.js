@@ -1,6 +1,10 @@
+import { sendWelcomeEmail } from "../emails/emailHandler.js";
+import { ENV } from "../lib/env.js";
 import { generateToken } from "../lib/utils.js";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+
+
 export const signUp = async (req, res) => {
     const {fullName, email, password} = req.body;
     try {
@@ -46,6 +50,12 @@ export const signUp = async (req, res) => {
                 email:newUser.email,
                 profilePic:newUser.profilePic,
             });
+            // resender email veryfaction
+            try {
+                await sendWelcomeEmail(saveUser.email, saveUser.fullName, ENV.CLIENT_URL);
+            } catch (error) {
+                console.log("Error to send Welcome Email", error);
+            }
         }
         else
         {
