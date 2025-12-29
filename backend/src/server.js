@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import Route from "./routes/auth.route.js";
 import messageRoute from "./routes/message.route.js";
@@ -12,6 +13,8 @@ import { ENV } from "./lib/env.js";
 const __dirname = path.resolve();
 const app = express();
 const port = ENV.PORT || 3215;
+
+app.use(cors({origin: ENV.CLIENT_URL, credentials: true}));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
