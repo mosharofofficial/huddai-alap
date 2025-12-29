@@ -24,7 +24,7 @@ export function createWelcomeEmailTemplate(name, clientURL) {
                   
                   <!-- Logo Container -->
                   <div style="display: inline-block; background: linear-gradient(145deg, #ffffff, #f0f0f0); padding: 20px; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 -5px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
-                    <img src="http://localhost:5173/image/logo-01.png" alt="Huddai Alap" style="width: 70px; height: 70px; display: block; border-radius: 50%;">
+                    <img src="/frontend/public/logo-01.svg" alt="Huddai Alap" style="width: 70px; height: 70px; display: block; border-radius: 50%;">
                   </div>
                   
                   <h1 style="color: #ffffff; margin: 0; font-size: 36px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.2); letter-spacing: 1px;">Huddai Alap</h1>
