@@ -1,4 +1,4 @@
-import { userChatStore } from '../store/useChatStore';
+import { useChatStore } from '../store/useChatStore';
 import BorderAnimatedContainer from '../components/BorderAnimatedContainer';
 import ProfileHeader from './../components/ProfileHeader';
 import ActiveTabSwitch from './../components/ActiveTabSwitch';
@@ -8,7 +8,7 @@ import ChatContainer from './../components/ChatContainer';
 import NoConversation from './../components/NoConversation';
 
 const ChatPage = () => {
-    const {activeTab, selectedUser} = userChatStore();
+    const {activeTab, selectedUser} = useChatStore();
     return (
     <div className="relative w-full max-w-6xl h-[900px]">
         <BorderAnimatedContainer>
