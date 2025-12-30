@@ -78,5 +78,5 @@ export const useAuthStore = create((set) => ({
       set({ isProfileUpdating: false });
     }
   },
-  
+
 }));
