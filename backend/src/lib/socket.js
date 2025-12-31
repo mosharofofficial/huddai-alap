@@ -16,6 +16,11 @@ const io = new Server(server, {
 // middleware to socket connection
 io.use(socketAuthMiddleware);
 
+// eikhane check korbo user online ache naki nai
+export function getReceiverSocketId(userId) {
+  return userSocketMap[userId];
+};
+
 // eita user korar main reason holo amar jokhon dekhbo user ache naki online?
 const userSocketMap = {};
 
