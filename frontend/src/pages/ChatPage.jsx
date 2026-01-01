@@ -29,6 +29,7 @@ const ChatPage = () => {
                 }
             </div>
         </BorderAnimatedContainer>
+        
     </div>
     );
 };
