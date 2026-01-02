@@ -31,7 +31,7 @@ const AiMessageInput = ({ onSend, isSoundEnabled = true }) => {
             setText(e.target.value);
             if (isSoundEnabled) playRandomKeySound();
           }}
-          className="flex-1 bg-slate-700/50 border border-slate-600/50 rounded-lg py-2 px-4"
+          className="flex-1 bg-slate-700/50 border border-slate-600/50 rounded-lg py-2 px-4 text-[whitesmoke]"
           placeholder="Ask the AI anything..."
         />
 
