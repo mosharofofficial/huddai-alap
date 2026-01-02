@@ -17,7 +17,12 @@ const ChatContainer = () => {
     subscribeToMessages();
 
     return () => unsubscribeFromMessages();
-  }, [selectedUser, getMessagesByUserId, unsubscribeFromMessages]);
+  }, [
+    selectedUser,
+    getMessagesByUserId,
+    unsubscribeFromMessages,
+    subscribeToMessages,
+  ]);
 
   useEffect(() => {
     if (messagesEndRef.current) {

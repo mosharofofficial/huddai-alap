@@ -14,33 +14,46 @@ import { useAiChatStore } from "../store/useAiChatStore";
 const ChatPage = () => {
   const { activeTab, selectedUser } = useChatStore();
   const { selectedRoom } = useAiChatStore();
-  const { authUser, isCheckingAuth } = useAuthStore(); // get logged-in user
+  const { authUser, isCheckingAuth } = useAuthStore();
 
-  if (isCheckingAuth) return <div>Loading...</div>; // show loading while checking auth
+  if (isCheckingAuth) return <div>Loading...</div>;
 
-  const userEmail = authUser?.email; // <-- get email from authUser
+  const userEmail = authUser?.email;
 
   return (
-    <div className="relative w-full max-w-6xl h-[900px]">
+    <div className="relative w-full h-screen max-w-7xl mx-auto">
       <BorderAnimatedContainer>
-        {/* Left sidebar */}
-        <div className="w-80 bg-slate-700/50 backdrop-blur-sm flex flex-col">
-          <ProfileHeader />
-          <ActiveTabSwitch />
-          <div className="flex-1 overflow-y-auto p-4 space-y-2">
-            {activeTab === "chats" && <ChatsList />}
-            {activeTab === "contacts" && <ContactList />}
-            {activeTab === "Ai Chat" && <AIChatRoomsList email={userEmail} />}
+        <div className="flex h-full w-full overflow-hidden">
+          {/* Sidebar */}
+          <div
+            className={`
+              bg-slate-700/50 backdrop-blur-sm flex flex-col
+              w-full sm:w-80
+              ${selectedUser || selectedRoom ? "hidden sm:flex" : "flex"}
+            `}
+          >
+            <ProfileHeader />
+            <ActiveTabSwitch />
+            <div className="flex-1 overflow-y-auto p-4 space-y-2">
+              {activeTab === "chats" && <ChatsList />}
+              {activeTab === "contacts" && <ContactList />}
+              {activeTab === "Ai Chat" && <AIChatRoomsList email={userEmail} />}
+            </div>
           </div>
-        </div>
 
-        {/* Right side */}
-        <div className="flex-1 flex flex-col bg-slate-800/50 backdrop-blur-sm">
-          {!(activeTab === "Ai Chat") &&
-            (selectedUser ? <ChatContainer /> : <NoConversation />)}
-          
-          {activeTab === "Ai Chat" &&
-            (selectedRoom ? <AiChatContainer /> : <NoConversation />)}
+          {/* Chat area */}
+          <div
+            className={`
+              flex-1 flex flex-col bg-slate-800/50 backdrop-blur-sm
+              ${!(selectedUser || selectedRoom) ? "hidden sm:flex" : "flex"}
+            `}
+          >
+            {activeTab !== "Ai Chat" &&
+              (selectedUser ? <ChatContainer /> : <NoConversation />)}
+
+            {activeTab === "Ai Chat" &&
+              (selectedRoom ? <AiChatContainer /> : <NoConversation />)}
+          </div>
         </div>
       </BorderAnimatedContainer>
     </div>
