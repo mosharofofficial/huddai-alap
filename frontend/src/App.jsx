@@ -44,6 +44,9 @@ const App = () => {
       </div>
 
       <Toaster />
+      <footer className="w-full text-center py-4 text-slate-400 text-sm">
+        © {new Date().getFullYear()} MNJ_Syntax_Error. All rights reserved.
+      </footer>
     </div>
   );
 };
